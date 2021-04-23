@@ -66,7 +66,7 @@ in
 
 import { dev, browser } from '$app/env';
 
-	const base_url = store.state.base_url;
+	const base_url = '/';
 	if (!dev && browser) {
 		(async () => {
 			if ('serviceWorker' in navigator) {
