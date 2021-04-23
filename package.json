@@ -1,0 +1,11 @@
+{
+  "name": "kit-sw-workbox",
+  "version": "1.0.0",
+  "description": "a service-worker svelte-kit vite plugin to work with workbox",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anyass3",
+  "license": "ISC"
+}
