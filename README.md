@@ -66,13 +66,11 @@ in
 
 import { dev, browser } from '$app/env';
 
-	const base_url = '/';
 	if (!dev && browser) {
 		(async () => {
 			if ('serviceWorker' in navigator) {
 				const { Workbox, messageSW } = await import('workbox-window');
-				const sw_url = base_url + 'service-worker.js';
-				const wb = new Workbox(sw_url);
+				const wb = new Workbox('/service-worker.js');
 				let registration;
 
                 // this will always activate the new build on available
