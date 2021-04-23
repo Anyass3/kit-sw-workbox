@@ -32,7 +32,7 @@ module.exports = {
 > eg:
 
 ```js
-sw{routes: ['/','/about',...]}
+sw({routes: ['/','/about',...]})
 ```
 
 ### now in
@@ -113,4 +113,5 @@ npm i -D workbox-precaching
 ```
 
 ### need any help you can open an issue
+
 # kit-sw-workbox
