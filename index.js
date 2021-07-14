@@ -6,7 +6,7 @@ module.exports = ({ routes }) => ({
   // this so we can customize it to include hashes so it can work well with workbox-precaching
   // which will make our service-worker auto updatable
   transform(code, id) {
-    if (id.endsWith('.svelte/build/runtime/service-worker.js')) {
+    if (id.match(/\.svelte(-kit)?\/build\/runtime\/service-worker\.js/)) {
       // to generate randon string hash
       const hash = () => Math.floor(2147483648 * Math.random()).toString(36);
 
