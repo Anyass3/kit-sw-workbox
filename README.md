@@ -40,12 +40,10 @@ sw({routes: ['/','/about',...]})
 ```js
 // src/service-worker.ts/js
 
-// @ts-ignore
 import { build, files } from '$service-worker';
 
 import { precacheAndRoute } from 'workbox-precaching';
 
-// // @ts-ignore
 precacheAndRoute([...build, ...files]);
 
 // this is require if you would like to create a prompt on so every time a new build is available
@@ -53,7 +51,6 @@ precacheAndRoute([...build, ...files]);
 // something like new update
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
-    // @ts-ignore
     self.skipWaiting();
   }
 });
