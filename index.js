@@ -21,8 +21,8 @@ module.exports = ({ routes }) => ({
       // console.log(code, routes);
 
       // construct regular expressons
-      const reBuild = /export[\ ]*const[\ ]*build[\ ]*\=[\ ]*(?<code>\[[^\[\]]*\])/;
-      const reFiles = /export[\ ]*const[\ ]*files[\ ]*\=[\ ]*(?<code>\[[^\[\]]*\])/;
+      const reBuild = /export[\ ]*const[\ ]*build[\ ]*\=[\ ]*(?<code>\[[\s\S]*?\n\]);/;
+      const reFiles = /export[\ ]*const[\ ]*files[\ ]*\=[\ ]*(?<code>\[[\s\S]*?\n\]);/;
 
       // extract build files
       // const build = JSON.parse(code.match(reBuild)?.groups?.code || []);
