@@ -1,4 +1,4 @@
-A service-worker svelte-kit vite plugin to work with workbox
+A service-worker svelte-kit vite plugin to use with workbox
 
 # installation
 
