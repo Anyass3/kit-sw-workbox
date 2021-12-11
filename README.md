@@ -12,30 +12,33 @@ const sw=require('kit-sw-workbox')
 
 module.exports = {
     ...
-    ...
 	kit: {
         ...
-        ...
-		vite: {
-			plugins: [
-                sw({routes: []})
-            ],
-        ...
-        ...
-	}
+	   vite: {
+	      plugins: [
+	         sw({routes: []})
+	      ],
+           ...
+	   }
 };
 ```
 
-> by default it is going to cache all the static files and build files except the routes
+> By default it is going to cache all the static files and build files except the routes
 
-> routes: are the routes which you would like to be cached too
-> eg:
-
+> Routes: are the routes which you would like to be cached too
+> Example:
 ```js
 sw({routes: ['/','/about',...]})
 ```
 
-### now in
+## Example service-worker file
+[workbox module import statements and importScripts](https://developers.google.com/web/tools/workbox/modules/workbox-sw#convert_code_using_import_statements_to_use_workbox-sw)
+
+### Usings module imports
+
+Install the modules you need
+
+`npm i -D workbox-precaching`
 
 ```js
 // src/service-worker.ts/js
@@ -46,20 +49,42 @@ import { precacheAndRoute } from 'workbox-precaching';
 
 precacheAndRoute([...build, ...files]);
 
-// this is require if you would like to create a prompt on so every time a new build is available
-// it will show you the prompt in order activate it and skip waiting
-// something like new update
+// this is required if you would like to create a prompt or so
+// a SKIP_WAITING message is sent from browser window
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 });
+``` 
+
+### Using  importScripts with `workbox-sw`
+```js
+import { build, files, timestamp } from '$service-worker';
+
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.2.0/workbox-sw.js');
+
+
+// debuging is false by default
+workbox.setConfig({
+	debug: true
+});
+
+// load module you want to use
+workbox.loadModule('workbox-precaching');
+
+
+workbox.precaching.precacheAndRoute([...build, ...files]);
 ```
 
-in
+## Example in your browser window code
+Using `workbox-window`
+```
+npm i -D workbox-window
+```
 
 ```js
-//  src/routes/$layout.svelte
+//  src/routes/__layout.svelte
 
 import { dev, browser } from '$app/env';
 
@@ -81,8 +106,8 @@ if (!dev && browser) {
         wb.addEventListener('controlling', (event) => {
           window.location.reload();
         });
-
-        // since the user accepted the prompt we should skip_waiting
+	// some logic to allow user to SKIP_WAITING
+        // if the user accepted we skip_waiting
         if (registration?.waiting) {
           messageSW(registration.waiting, { type: 'SKIP_WAITING' });
         }
@@ -97,13 +122,6 @@ if (!dev && browser) {
     }
   })();
 }
-```
-
-### Also you might want to install these
-
-```
-npm i -D workbox-window
-npm i -D workbox-precaching
 ```
 
 ### need any help you can open an issue
