@@ -1,6 +1,6 @@
 A service-worker svelte-kit vite plugin to use with workbox
 
-# installation
+# Installation
 
 `npm i -D kit-sw-workbox`
 
@@ -32,7 +32,7 @@ sw({routes: ['/','/about',...]})
 ```
 
 ## Example service-worker file
-[workbox module import statements and importScripts](https://developers.google.com/web/tools/workbox/modules/workbox-sw#convert_code_using_import_statements_to_use_workbox-sw)
+[Workbox module import statements and importScripts](https://developers.google.com/web/tools/workbox/modules/workbox-sw#convert_code_using_import_statements_to_use_workbox-sw)
 
 ### Usings module imports
 
@@ -124,6 +124,6 @@ if (!dev && browser) {
 }
 ```
 
-### need any help you can open an issue
+### Need any help you can open an issue
 
 # kit-sw-workbox
